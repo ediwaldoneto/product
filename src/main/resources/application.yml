@@ -1,0 +1,13 @@
+spring:
+    application:
+       name: product
+    profiles:
+       active: local,default
+DATASOURCE:
+    URL: jdbc:mysql://localhost:3306/product
+    DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
+    POOL_NAME: product
+    CONNECTION_TIMEOUT: 60000
+    MAX_POOL_SIZE: 3
+DATASOURCE_USERNAME: 'root'
+DATASOURCE_PASSWORD: 'root'
