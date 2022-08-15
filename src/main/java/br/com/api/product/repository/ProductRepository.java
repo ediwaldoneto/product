@@ -5,7 +5,7 @@ import br.com.api.product.model.Product;
 public interface ProductRepository {
 
     public void insertProduct(Product product);
-    public void deleteProduct(int productId);
-    public void updateProduct(int productId);
-    public Product findProduct(int productId);
+    public void deleteProduct(Long productId);
+    public void updateProduct(Long productId);
+    public Product findProduct(Long productId);
 }

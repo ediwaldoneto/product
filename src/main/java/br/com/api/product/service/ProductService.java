@@ -5,5 +5,6 @@ import br.com.api.product.model.Product;
 
 public interface ProductService {
 
-    public Product getProductById(int id);
+    public Product getProductById(Long id);
+    public void insertProduct(Product product);
 }

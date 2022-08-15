@@ -2,15 +2,15 @@ package br.com.api.product.model;
 
 public class Product {
 
-    private int id;
+    private Long id;
     private String nome;
     private int codigo;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
