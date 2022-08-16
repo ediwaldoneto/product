@@ -17,9 +17,9 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product getProductById(Long id) {
-        logger.info("Search for id: {} ", id);
         return service.findProduct(id);
     }
+
     @Override
     public void insertProduct(Product product) {
         service.insertProduct(product);

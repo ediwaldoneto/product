@@ -13,11 +13,6 @@ public class ProductDTO {
     @NotNull(message = "code cannot be empty or null")
     private int codigo;
 
-    public ProductDTO(String nome, int codigo) {
-        this.nome = nome;
-        this.codigo = codigo;
-    }
-
     public Long getId() {
         return id;
     }

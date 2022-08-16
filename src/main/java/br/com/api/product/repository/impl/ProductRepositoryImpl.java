@@ -21,11 +21,11 @@ public class ProductRepositoryImpl implements ProductRepository {
 
 
     @Override
-    public void insertProduct(Product product) {
+    public boolean insertProduct(Product product) {
         MapSqlParameterSource parameterSource = new MapSqlParameterSource();
         parameterSource.addValue("nome", product.getNome());
         parameterSource.addValue("codigo", product.getCodigo());
-        jdbcTemplate.update(ProductQuerys.INSERT_PRODUCT, parameterSource);
+        return jdbcTemplate.update(ProductQuerys.INSERT_PRODUCT, parameterSource) > 0;
     }
 
     @Override
@@ -40,14 +40,9 @@ public class ProductRepositoryImpl implements ProductRepository {
 
     @Override
     public Product findProduct(Long productId) {
-        try {
             MapSqlParameterSource parameterSource = new MapSqlParameterSource();
             parameterSource.addValue("productId", productId);
             return jdbcTemplate.queryForObject(ProductQuerys.FIND_BY_ID, parameterSource, mapRow());
-        } catch (Exception e) {
-            logger.info("Product not found: {} ", productId);
-            return null;
-        }
     }
 
     private RowMapper<Product> mapRow() {

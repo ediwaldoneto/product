@@ -1,5 +1,8 @@
 package br.com.api.product.model;
 
+import br.com.api.product.dto.ProductDTO;
+import org.modelmapper.ModelMapper;
+
 public class Product {
 
     private Long id;
@@ -28,5 +31,9 @@ public class Product {
 
     public void setCodigo(int codigo) {
         this.codigo = codigo;
+    }
+
+    public ProductDTO convertEntityToDTO() {
+        return new ModelMapper().map(this, ProductDTO.class);
     }
 }
