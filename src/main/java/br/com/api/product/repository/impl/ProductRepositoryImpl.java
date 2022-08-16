@@ -14,8 +14,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class ProductRepositoryImpl implements ProductRepository {
 
-    private final Logger logger = LoggerFactory.getLogger("logger");
-
     @Autowired
     private NamedParameterJdbcTemplate jdbcTemplate;
 
@@ -30,6 +28,9 @@ public class ProductRepositoryImpl implements ProductRepository {
 
     @Override
     public void deleteProduct(Long productId) {
+        MapSqlParameterSource parameterSource = new MapSqlParameterSource();
+        parameterSource.addValue("productId", productId);
+        jdbcTemplate.update(ProductQuerys.DELETE_PRODUCT, parameterSource);
 
     }
 
@@ -40,9 +41,9 @@ public class ProductRepositoryImpl implements ProductRepository {
 
     @Override
     public Product findProduct(Long productId) {
-            MapSqlParameterSource parameterSource = new MapSqlParameterSource();
-            parameterSource.addValue("productId", productId);
-            return jdbcTemplate.queryForObject(ProductQuerys.FIND_BY_ID, parameterSource, mapRow());
+        MapSqlParameterSource parameterSource = new MapSqlParameterSource();
+        parameterSource.addValue("productId", productId);
+        return jdbcTemplate.queryForObject(ProductQuerys.FIND_BY_ID, parameterSource, mapRow());
     }
 
     private RowMapper<Product> mapRow() {

@@ -33,10 +33,12 @@ public class ProductController {
             response.setData(productDTO);
             return new ResponseEntity<>(response, HttpStatus.OK);
         } catch (Exception e) {
+            logger.info(e.getMessage());
             response.addErrorMsgToResponse(e.getMessage());
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
         }
     }
+
     @PostMapping
     public ResponseEntity<Response<ProductDTO>> create(@Valid @RequestBody ProductDTO productDTO) {
         Response<ProductDTO> response = new Response<>();
@@ -49,6 +51,19 @@ public class ProductController {
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return new ResponseEntity<>(response, HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Response<ProductDTO>> delete(@PathVariable final Long id) {
+        Response<ProductDTO> response = new Response<>();
+        try {
+            service.deleteProduct(id);
+        } catch (Exception e) {
+            logger.info(e.getMessage());
+            response.addErrorMsgToResponse(e.getMessage());
+            return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
 }
