@@ -26,7 +26,6 @@ public class ProductController {
     @GetMapping("/{id}")
     public ResponseEntity<Response<ProductDTO>> findById(@PathVariable final Long id) {
         Response<ProductDTO> response = new Response<>();
-
         try {
             Product product = service.getProductById(id);
             ProductDTO productDTO = product.convertEntityToDTO();
@@ -35,7 +34,7 @@ public class ProductController {
         } catch (Exception e) {
             logger.info(e.getMessage());
             response.addErrorMsgToResponse(e.getMessage());
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+            return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
         }
     }
 
@@ -61,7 +60,7 @@ public class ProductController {
         } catch (Exception e) {
             logger.info(e.getMessage());
             response.addErrorMsgToResponse(e.getMessage());
-            return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return new ResponseEntity<>(response, HttpStatus.OK);
     }

@@ -31,7 +31,6 @@ public class ProductRepositoryImpl implements ProductRepository {
         MapSqlParameterSource parameterSource = new MapSqlParameterSource();
         parameterSource.addValue("productId", productId);
         jdbcTemplate.update(ProductQuerys.DELETE_PRODUCT, parameterSource);
-
     }
 
     @Override
