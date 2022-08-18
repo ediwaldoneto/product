@@ -12,38 +12,27 @@ import org.springframework.stereotype.Service;
 @Service
 public class ProductServiceImpl implements ProductService {
 
-    private final Logger logger = LoggerFactory.getLogger("logger");
+    private final Logger logger = LoggerFactory.getLogger("productService");
     @Autowired
     private ProductRepositoryImpl service;
 
     @Override
-    public Product getProductById(Long id) throws ProductException {
-        try {
-            logger.info("searching by id: {}", id);
-            return service.findProduct(id);
-        } catch (Exception e) {
-            throw new ProductException("an error has occurred: " + e.getMessage());
-        }
+    public Product getProductById(Long id) {
+        logger.info("searching by id {}",id);
+        return service.findProduct(id);
     }
 
     @Override
     public void insertProduct(Product product) throws ProductException {
-        try {
-            service.insertProduct(product);
-        } catch (Exception e) {
-            throw new ProductException("an error has occurred:" + e.getMessage());
-        }
+        service.insertProduct(product);
     }
 
     @Override
     public void deleteProduct(Long id) throws Exception {
         Product product = getProductById(id);
         if (product != null) {
-            try {
-                service.deleteProduct(product.getId());
-            } catch (Exception e) {
-                throw new ProductException("an error has occurred: " + e.getMessage());
-            }
+            logger.info("deleting product {}",id);
+            service.deleteProduct(product.getId());
         }
     }
 

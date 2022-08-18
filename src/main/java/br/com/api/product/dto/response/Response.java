@@ -1,7 +1,6 @@
 package br.com.api.product.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import org.springframework.web.client.ResponseErrorHandler;
 
 import java.time.LocalDateTime;
 
@@ -27,7 +26,7 @@ public class Response<T> {
         this.errors = errors;
     }
 
-    public void addErrorMsgToResponse(String error){
+    public void addErrorMsgToResponse(String error) {
         ResponseError responseError = new ResponseError();
         responseError.setDetails(error);
         responseError.setDateTime(LocalDateTime.now());

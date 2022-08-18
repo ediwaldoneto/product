@@ -3,19 +3,16 @@ package br.com.api.product.dto;
 import br.com.api.product.model.Product;
 import org.modelmapper.ModelMapper;
 
-public class ProductDTO {
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
-    private Long id;
+public class CreateProduct {
+    @NotEmpty(message = "name cannot be empty or null.")
+    @NotNull(message = "name cannot be empty or null.")
     private String nome;
+
+    @NotNull(message = "code cannot be empty or null")
     private int codigo;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getNome() {
         return nome;

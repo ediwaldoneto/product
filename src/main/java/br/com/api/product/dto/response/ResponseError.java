@@ -5,10 +5,10 @@ import java.time.LocalDateTime;
 
 public class ResponseError {
 
-    @NotNull(message="Timestamp cannot be null")
+    @NotNull(message = "Timestamp cannot be null")
     private LocalDateTime dateTime;
 
-    @NotNull(message="Details cannot be null")
+    @NotNull(message = "Details cannot be null")
     private String details;
 
     public LocalDateTime getDateTime() {

@@ -1,5 +1,6 @@
 package br.com.api.product.controller;
 
+import br.com.api.product.dto.CreateProduct;
 import br.com.api.product.dto.ProductDTO;
 import br.com.api.product.dto.response.Response;
 import br.com.api.product.model.Product;
@@ -39,13 +40,13 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity<Response<ProductDTO>> create(@Valid @RequestBody ProductDTO productDTO) {
-        Response<ProductDTO> response = new Response<>();
+    public ResponseEntity<Response<CreateProduct>> create(@Valid @RequestBody CreateProduct product) {
+        Response<CreateProduct> response = new Response<>();
         try {
-            service.insertProduct(productDTO.convertDTOToEntity());
+            service.insertProduct(product.convertDTOToEntity());
         } catch (Exception e) {
             logger.info(e.getMessage());
-            response.setData(productDTO);
+            response.setData(product);
             response.addErrorMsgToResponse(e.getMessage());
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
