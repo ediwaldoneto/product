@@ -1,5 +1,6 @@
 package br.com.api.product.service.impl;
 
+import br.com.api.product.dto.ProductDTO;
 import br.com.api.product.model.Product;
 import br.com.api.product.repository.impl.ProductRepositoryImpl;
 import br.com.api.product.service.ProductService;
@@ -19,7 +20,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product getProductById(Long id) {
-        logger.info("searching by id {}",id);
+        logger.info("searching by id {}", id);
         return service.findProduct(id);
     }
 
@@ -32,7 +33,7 @@ public class ProductServiceImpl implements ProductService {
     public void deleteProduct(Long id) {
         Product product = getProductById(id);
         if (product != null) {
-            logger.info("deleting product {}",id);
+            logger.info("deleting product {}", id);
             service.deleteProduct(product.getId());
         }
     }
@@ -43,4 +44,18 @@ public class ProductServiceImpl implements ProductService {
         return service.findAll();
     }
 
+    @Override
+    public void updateProduct(ProductDTO productDTO) {
+        Product product = getProductById(productDTO.getId());
+        if (product != null) {
+            logger.info("updating product id {}", productDTO.getId());
+            service.updateProduct(productDTO.convertDTOToEntity());
+        } else {
+            logger.info("no record found for id {}", productDTO.getId());
+
+        }
+    }
+
 }
+
+

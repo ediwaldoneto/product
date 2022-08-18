@@ -83,4 +83,16 @@ public class ProductController {
             return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
         }
     }
+    @PutMapping("/{id}")
+    public ResponseEntity<Response<ProductDTO>> update(@RequestBody ProductDTO productDTO) {
+        Response<ProductDTO> response = new Response<>();
+        try {
+            service.updateProduct(productDTO);
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        } catch (Exception e) {
+            logger.info(e.getMessage());
+            response.addErrorMsgToResponse(e.getMessage());
+            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

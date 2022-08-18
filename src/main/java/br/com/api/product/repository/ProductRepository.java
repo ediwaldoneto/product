@@ -10,7 +10,7 @@ public interface ProductRepository {
 
     public void deleteProduct(Long productId);
 
-    public void updateProduct(Long productId);
+    public void updateProduct(Product product);
 
     public Product findProduct(Long productId);
 

@@ -34,8 +34,12 @@ public class ProductRepositoryImpl implements ProductRepository {
     }
 
     @Override
-    public void updateProduct(Long productId) {
-
+    public void updateProduct(Product product) {
+        MapSqlParameterSource parameterSource = new MapSqlParameterSource();
+        parameterSource.addValue("contractId", product.getId());
+        parameterSource.addValue("nome", product.getNome());
+        parameterSource.addValue("codigo", product.getCodigo());
+        jdbcTemplate.update(ProductQuerys.UPDATE_PRODUCT, parameterSource);
     }
 
     @Override
