@@ -13,6 +13,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @RequestMapping(value = "/product")
@@ -66,4 +68,19 @@ public class ProductController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    @GetMapping
+    public ResponseEntity<Response<List<ProductDTO>>> findAllProduct() {
+        Response<List<ProductDTO>> response = new Response<>();
+        try {
+            List<Product> product = service.findAll();
+            List<ProductDTO> dtoList = new ArrayList<>();
+            product.forEach(product1 -> dtoList.add(product1.convertEntityToDTO()));
+            response.setData(dtoList);
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        } catch (Exception e) {
+            logger.info(e.getMessage());
+            response.addErrorMsgToResponse(e.getMessage());
+            return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+        }
+    }
 }

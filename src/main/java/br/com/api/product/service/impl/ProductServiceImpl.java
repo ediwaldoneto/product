@@ -1,6 +1,5 @@
 package br.com.api.product.service.impl;
 
-import br.com.api.product.exception.ProductException;
 import br.com.api.product.model.Product;
 import br.com.api.product.repository.impl.ProductRepositoryImpl;
 import br.com.api.product.service.ProductService;
@@ -9,10 +8,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ProductServiceImpl implements ProductService {
 
-    private final Logger logger = LoggerFactory.getLogger("productService");
+    private final Logger logger = LoggerFactory.getLogger("loggerService");
     @Autowired
     private ProductRepositoryImpl service;
 
@@ -23,17 +24,23 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void insertProduct(Product product) throws ProductException {
+    public void insertProduct(Product product) {
         service.insertProduct(product);
     }
 
     @Override
-    public void deleteProduct(Long id) throws Exception {
+    public void deleteProduct(Long id) {
         Product product = getProductById(id);
         if (product != null) {
             logger.info("deleting product {}",id);
             service.deleteProduct(product.getId());
         }
+    }
+
+    @Override
+    public List<Product> findAll() {
+        logger.info("searching all occurrences");
+        return service.findAll();
     }
 
 }
