@@ -83,7 +83,7 @@ public class ProductController {
             return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
         }
     }
-    @PutMapping("/{id}")
+    @PutMapping
     public ResponseEntity<Response<ProductDTO>> update(@RequestBody ProductDTO productDTO) {
         Response<ProductDTO> response = new Response<>();
         try {
