@@ -22,7 +22,7 @@ public class ProductRepositoryImpl implements ProductRepository {
     public void insertProduct(Product product) {
         MapSqlParameterSource parameterSource = new MapSqlParameterSource();
         parameterSource.addValue("nome", product.getNome());
-        parameterSource.addValue("codigo", product.getCodigo());
+        parameterSource.addValue("marca", product.getMarca());
         jdbcTemplate.update(ProductQuerys.INSERT_PRODUCT, parameterSource);
     }
 
@@ -38,7 +38,7 @@ public class ProductRepositoryImpl implements ProductRepository {
         MapSqlParameterSource parameterSource = new MapSqlParameterSource();
         parameterSource.addValue("contractId", product.getId());
         parameterSource.addValue("nome", product.getNome());
-        parameterSource.addValue("codigo", product.getCodigo());
+        parameterSource.addValue("marca", product.getMarca());
         jdbcTemplate.update(ProductQuerys.UPDATE_PRODUCT, parameterSource);
     }
 
@@ -59,7 +59,7 @@ public class ProductRepositoryImpl implements ProductRepository {
             final Product product = new Product();
             product.setId(rs.getLong("id"));
             product.setNome(rs.getString("nome"));
-            product.setCodigo(rs.getInt("codigo"));
+            product.setMarca(rs.getString("marca"));
             return product;
         };
     }

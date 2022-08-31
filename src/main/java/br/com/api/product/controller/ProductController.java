@@ -19,6 +19,7 @@ import java.util.List;
 
 @RequestMapping(value = "/product")
 @RestController
+@CrossOrigin(origins = "http://localhost:3000/")
 public class ProductController {
 
     private final Logger logger = LoggerFactory.getLogger("logger");

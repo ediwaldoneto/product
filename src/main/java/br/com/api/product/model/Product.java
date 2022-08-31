@@ -7,7 +7,7 @@ public class Product {
 
     private Long id;
     private String nome;
-    private int codigo;
+    private String marca;
 
     public Long getId() {
         return id;
@@ -25,12 +25,12 @@ public class Product {
         this.nome = nome;
     }
 
-    public int getCodigo() {
-        return codigo;
+    public String getMarca() {
+        return marca;
     }
 
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
+    public void setMarca(String marca) {
+        this.marca = marca;
     }
 
     public ProductDTO convertEntityToDTO() {

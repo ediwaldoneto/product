@@ -11,8 +11,9 @@ public class CreateProduct {
     @NotNull(message = "name cannot be empty or null.")
     private String nome;
 
-    @NotNull(message = "code cannot be empty or null")
-    private int codigo;
+    @NotEmpty(message = "marca cannot be empty or null.")
+    @NotNull(message = ",marca cannot be empty or null.")
+    private String marca;
 
     public String getNome() {
         return nome;
@@ -22,12 +23,12 @@ public class CreateProduct {
         this.nome = nome;
     }
 
-    public int getCodigo() {
-        return codigo;
+    public String getMarca() {
+        return marca;
     }
 
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
+    public void setMarca(String marca) {
+        this.marca = marca;
     }
 
     public Product convertDTOToEntity() {
